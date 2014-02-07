@@ -1,0 +1,16 @@
+---
+#ClassVars:
+#  Enabled: false
+#CyclomaticComplexity:
+#  Max: 10
+AllCops:
+  Excludes:
+    - vendor/**
+Documentation:
+  Enabled: false
+EmptyLinesAroundBody:
+  Enabled: false
+LineLength:
+  Enabled: false
+MethodLength:
+  Max: 25

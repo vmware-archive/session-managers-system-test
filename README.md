@@ -15,7 +15,7 @@ bundle exec rake
 [Pull requests][] are welcome; see the [contributor guidelines][] for details.
 
 ## License
-This buildpack is released under version 2.0 of the [Apache License][].
+This system test is released under version 2.0 of the [Apache License][].
 
 [Apache License]: http://www.apache.org/licenses/LICENSE-2.0
 [contributor guidelines]: CONTRIBUTING.md

@@ -1,0 +1,10 @@
+language: ruby
+rvm:
+  - "2.1.0"
+services:
+  - redis-server
+notifications:
+  webhooks:
+    urls:
+      - https://build-monitor.cfapps.io:4443/projects/RMST/webhook
+    on_start: true
