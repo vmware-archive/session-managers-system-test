@@ -66,7 +66,7 @@ then be sure to update it to 2014 appropriately
 ```
 
 ## Squash commits
-Use `git rebase --interactive`, `git add --patch` and other tools to "squash" multiple commits into atomic changes. In addition to the man pages for git, there are many resources online to help you understand how these tools work. Here is one: <http://book.git-scm.com/4_interactive_rebasing.html>.
+Use `git rebase --interactive`, `git add --patch` and other tools to "squash" multiple commits into atomic changes. In addition to the man pages for git, there are many resources online to help you understand how these tools work. Here is one: <http://git-scm.com/book/en/Git-Tools-Rewriting-History>.
 
 ## Use real name in git commits
 Please configure git to use your real first and last name for any commits you intend to submit as pull requests. For example, this is not acceptable:
@@ -131,7 +131,7 @@ Issue: #10, #11
 1. Mention associated GitHub issue(s) at the end of the commit comment, prefixed with "Issue: " as above
 1. In the body of the commit message, explain how things worked before this commit, what has changed, and how things work now
 
-[commit guidelines section of Pro Git]: http://progit.org/book/ch5-2.html#commit_guidelines
+[commit guidelines section of Pro Git]: http://git-scm.com/book/en/Distributed-Git-Contributing-to-a-Project#Commit-Guidelines
 
 ## Run all tests prior to submission
 See the [Running Tests][] section of the README for instructions. Make sure that all tests pass prior to submitting your pull request.
@@ -145,13 +145,13 @@ Follow the same conventions for pull request subject lines as mentioned above fo
 
 In the body:
 
-1. Explain your use case. What led you to submit this change? Why were existing mechanisms in the test the buildpack insufficient? Make a case that this is a general-purpose problem and that yours is a general-purpose solution, etc.
+1. Explain your use case. What led you to submit this change? Why were existing mechanisms in the system test insufficient? Make a case that this is a general-purpose problem and that yours is a general-purpose solution, etc.
 1. Add any additional information and ask questions; start a conversation, or continue one from GitHub issue
 1. Also mention that you have submitted the CLA as described above
 
 Note that for pull requests containing a single commit, GitHub will default the subject line and body of the pull request to match the subject line and body of the commit message. This is fine, but please also include the items above in the body of the request.
 
 ## Expect discussion and rework
-The Cloud Foundry Java Experience team takes a very conservative approach to accepting contributions to the test the buildpack. This is to keep code quality and stability as high as possible, and to keep complexity at a minimum. Your changes, if accepted, may be heavily modified prior to merging. You will retain "Author:" attribution for your Git commits granted that the bulk of your changes remain intact. You may be asked to rework the submission for style (as explained above) and/or substance. Again, we strongly recommend discussing any serious submissions with the Cloud Foundry Java Experience team _prior_ to engaging in serious development work.
+The Cloud Foundry Java Experience team takes a very conservative approach to accepting contributions to the system test. This is to keep code quality and stability as high as possible, and to keep complexity at a minimum. Your changes, if accepted, may be heavily modified prior to merging. You will retain "Author:" attribution for your Git commits granted that the bulk of your changes remain intact. You may be asked to rework the submission for style (as explained above) and/or substance. Again, we strongly recommend discussing any serious submissions with the Cloud Foundry Java Experience team _prior_ to engaging in serious development work.
 
 Note that you can always force push (`git push -f`) reworked / rebased commits against the branch used to submit your pull request. i.e. you do not need to issue a new pull request when asked to make changes.
