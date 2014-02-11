@@ -7,6 +7,7 @@
       <w>econnrefused</w>
       <w>errno</w>
       <w>fileutils</w>
+      <w>hiredis</w>
       <w>makedirs</w>
       <w>metadatas</w>
       <w>mktmpdir</w>

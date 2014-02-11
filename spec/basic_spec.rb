@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+require 'redis'
 require 'spec_helper'
 require 'tomcat_helper'
 
@@ -25,5 +26,14 @@ describe 'Deploy' do
     response     = RestClient.post location, session_data, content_type: 'text/plain'
     cookies      = response.cookies
     expect(RestClient.get location, cookies: cookies).to eq(session_data)
+  end
+
+  it 'expects test data to be stored and retrieved from Redis',
+     fixture: 'server' do
+    redis     = Redis.new(driver: :hiredis)
+    test_name = 'Session name stored in Redis'
+    test_data = 'Test data stored in Redis'
+    redis.set test_name, test_data
+    expect(redis.get test_name).to eq(test_data)
   end
 end
