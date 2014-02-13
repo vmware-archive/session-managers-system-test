@@ -23,6 +23,8 @@ shared_context 'tomcat_helper' do
 
   let(:cache_file) { Pathname.new('vendor/tomcat.tar.gz') }
 
+  let(:log_content) { File.open("#{tomcat_metadata[:location]}/logs/catalina.out").read }
+
   before do |example|
     with_timing('Starting Tomcat...') do
       untar_tomcat tomcat_metadata[:location]
@@ -44,8 +46,12 @@ shared_context 'tomcat_helper' do
   end
 
   def start_tomcat(dir, shutdown_port, http_port)
-    `JAVA_OPTS=\"-Dshutdown.port=#{shutdown_port} -Dhttp.port=#{http_port}\" #{dir}/bin/catalina.sh start`
-    wait_for_start(http_port)
+    File.open("#{dir}/bin/setenv.sh", 'w') do |f|
+      f.write("CATALINA_PID=$CATALINA_BASE/logs/tomcat.pid\n")
+      f.write("JAVA_OPTS=\"-Dshutdown.port=#{shutdown_port} -Dhttp.port=#{http_port}\"")
+    end
+    `#{dir}/bin/catalina.sh start`
+    wait_for_start(http_port, dir)
   end
 
   def stop_tomcat(dir, shutdown_port)
@@ -61,13 +67,19 @@ shared_context 'tomcat_helper' do
     FileUtils.copy 'test-application/target/application.war', "#{dir}/webapps/ROOT.war"
   end
 
-  def wait_for_start(http_port)
+  def wait_for_start(http_port, dir)
+    Process.getpgid(File.open("#{dir}/logs/tomcat.pid").read.to_i)
+
     response = nil
     until response && response.body == 'ok'
       response = RestClient.get "http://localhost:#{http_port}"
     end
   rescue Errno::ECONNREFUSED
     retry
+  rescue Errno::ESRCH => e
+    fail StandardError, "Tomcat process was not running: #{e.message}\nLog Content:\n#{log_content}"
+  rescue StandardError => e
+    fail StandardError, "Unable to connect to Tomcat: #{e.message}\nLog Content:\n#{log_content}"
   end
 
   def with_timing(caption)
