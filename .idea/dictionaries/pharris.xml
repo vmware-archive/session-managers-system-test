@@ -6,7 +6,9 @@
       <w>dshutdown</w>
       <w>econnrefused</w>
       <w>errno</w>
+      <w>esrch</w>
       <w>fileutils</w>
+      <w>getpgid</w>
       <w>hiredis</w>
       <w>makedirs</w>
       <w>metadatas</w>
