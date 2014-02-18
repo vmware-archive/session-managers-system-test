@@ -52,9 +52,9 @@ describe 'Configuration' do
 
   end
 
-  xit 'causes data to be stored in a non-default database', :focus,
-     fixture:        'configure-database',
-     redis_database: 3 do
+  xit 'causes data to be stored in a non-default database',
+      fixture:        'configure-database',
+      redis_database: 3 do
     expect(redis.get(session_id)).to eq(session_data)
   end
 
