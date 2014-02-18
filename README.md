@@ -1,5 +1,6 @@
 # Redis Manager System Tests
 [![Build Status](https://travis-ci.org/gopivotal/redis-manager-system-test.png?branch=master)](https://travis-ci.org/gopivotal/redis-manager-system-test)
+[![Dependency Status](https://gemnasium.com/gopivotal/redis-manager-system-test.png)](https://gemnasium.com/gopivotal/redis-manager-system-test)
 
 The purpose of this repository is to exercise the [Redis Manager][] together with its dependencies and associated services to ensure that the whole package works together correctly.
 
