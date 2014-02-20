@@ -12,13 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require 'redis'
+require 'redis_helper'
+require 'session_helper'
+require 'spec_helper'
+require 'tomcat_helper'
 
-shared_context 'redis_helper' do
+describe 'Redis' do
+  include_context 'redis_helper'
+  include_context 'session_helper'
+  include_context 'tomcat_helper'
 
-  let(:redis) do |example|
-    database = example.metadata[:redis_database] || 7
-    Redis.new(db: database, driver: :hiredis)
+  xit 'stores session data from Tomcat',
+      fixture: 'default' do
+    expect(redis.get(session_id)).to eq(session_data)
   end
 
 end
