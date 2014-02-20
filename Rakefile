@@ -29,7 +29,7 @@ end
 require 'fileutils'
 require 'rest_client'
 file 'vendor/tomcat.tar.gz' do |f|
-  tomcat_version = '7.0.50'
+  tomcat_version = '7.0.52'
   tomcat_url     = "http://mirror.gopotato.co.uk/apache/tomcat/tomcat-7/v#{tomcat_version}/bin/apache-tomcat-#{tomcat_version}.tar.gz"
 
   cache_file = Pathname.new(f.name)
