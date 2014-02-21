@@ -16,17 +16,9 @@
   ~ limitations under the License.
   -->
 
-<Server port='${shutdown.port}'>
-    <Service name='Catalina'>
-        <Connector port='${http.port}'/>
-
-        <Engine defaultHost='localhost' name='Catalina'>
-            <Host name='localhost'>
-                <Context>
-                    <Manager className="com.gopivotal.catalina.session.RedisSessionManager"
-                             uri="http://127.1.2.3:9876/invalid/" />
-                </Context>
-            </Host>
-        </Engine>
-    </Service>
-</Server>
+<Context allowLinking='true'>
+    <Valve className="com.gopivotal.manager.redis.RedisValve"/>
+    <Manager className="org.apache.catalina.session.PersistentManager">
+        <Store className="com.gopivotal.manager.redis.RedisStore" uri="http://127.1.2.3:9876/invalid/"/>
+    </Manager>
+</Context>

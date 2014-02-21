@@ -28,7 +28,7 @@ shared_context 'tomcat_helper' do
   before do |example|
     with_timing('Starting Tomcat...') do
       untar_tomcat tomcat_metadata[:location]
-      replace_server_xml example.metadata[:fixture], tomcat_metadata[:location]
+      replace_xml_files example.metadata[:fixture], tomcat_metadata[:location]
       deploy_war tomcat_metadata[:location]
       start_tomcat tomcat_metadata[:location], tomcat_metadata[:shutdown_port], tomcat_metadata[:http_port],
                    example.metadata[:ignore_startup_failure]
@@ -42,8 +42,9 @@ shared_context 'tomcat_helper' do
     end
   end
 
-  def replace_server_xml(server_xml, dir)
-    FileUtils.copy "spec/fixtures/#{server_xml}.xml", "#{dir}/conf/server.xml"
+  def replace_xml_files(context_xml, dir)
+    FileUtils.copy 'spec/fixtures/server.xml', "#{dir}/conf/server.xml"
+    FileUtils.copy "spec/fixtures/#{context_xml}.xml", "#{dir}/conf/context.xml"
   end
 
   def start_tomcat(dir, shutdown_port, http_port, suppress_fail)
