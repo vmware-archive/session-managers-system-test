@@ -17,7 +17,7 @@ require 'redis'
 shared_context 'redis_helper' do
 
   let(:redis) do |example|
-    database = example.metadata[:redis_database] || 7
+    database = example.metadata[:redis_database] || 0
     Redis.new(db: database, driver: :hiredis)
   end
 

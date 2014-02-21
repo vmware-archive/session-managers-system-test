@@ -26,21 +26,40 @@ file 'test-application/target/application.war' =>
   Dir.chdir('test-application') { system 'mvn package' }
 end
 
-tomcat_version = ENV['TOMCAT_VERSION'] || '8.0.3'
-
 require 'fileutils'
 require 'rest_client'
-file "vendor/apache-tomcat-#{tomcat_version}.tar.gz" do |f|
-  tomcat_url = "http://mirror.cc.columbia.edu/pub/software/apache/tomcat/tomcat-#{tomcat_version.chars[0]}" \
-  "/v#{tomcat_version}/bin/apache-tomcat-#{tomcat_version}.tar.gz"
 
-  cache_file = Pathname.new(f.name)
+def download_to_vendor(destination, url)
+  cache_file = Pathname.new("vendor/#{destination}")
   FileUtils.makedirs cache_file.parent unless cache_file.parent.exist?
-
-  puts "Downloading #{f.name} from #{tomcat_url}..."
-  cache_file.write(RestClient.get(tomcat_url)) unless cache_file.exist?
+  puts "Downloading #{destination} from #{url}..."
+  cache_file.write(RestClient.get(url)) unless cache_file.exist?
 end
 
-task spec: ['test-application/target/application.war', "vendor/apache-tomcat-#{tomcat_version}.tar.gz"]
+def tomcat_url(tomcat_version)
+  "http://mirror.cc.columbia.edu/pub/software/apache/tomcat/tomcat-#{tomcat_version.chars[0]}" \
+  "/v#{tomcat_version}/bin/apache-tomcat-#{tomcat_version}.tar.gz"
+end
+
+def tomcat_version
+  ENV['TOMCAT_VERSION'] || '7.0.52'
+end
+
+def redis_store_url(tomcat_version)
+  "http://maven.gopivotal.com.s3.amazonaws.com/snapshot/com/gopivotal/manager/redis-store/1.0.0.BUILD-SNAPSHOT/redis-store-1.0.0.BUILD-#{redis_store_version}.jar"
+end
+
+def redis_store_version
+  '20140221.151315-8'
+end
+
+tomcat_url = tomcat_url(tomcat_version)
+download_to_vendor("apache-tomcat-#{tomcat_version}.tar.gz", tomcat_url)
+
+redis_store_url = redis_store_url(redis_store_version)
+download_to_vendor('redis-store.jar', redis_store_url)
+
+task spec: ['test-application/target/application.war', "vendor/apache-tomcat-#{tomcat_version}.tar.gz",
+            'vendor/redis-store.jar']
 task warfile: 'test-application/target/application.war'
 task default: [:rubocop, :spec]

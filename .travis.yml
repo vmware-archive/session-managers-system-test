@@ -8,7 +8,7 @@ jdk:
   - oraclejdk8
 env:
   - TOMCAT_VERSION=7.0.52
-  - TOMCAT_VERSION=8.0.3
+#  - TOMCAT_VERSION=8.0.3
 notifications:
   webhooks:
     urls:
