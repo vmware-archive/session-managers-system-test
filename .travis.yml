@@ -3,6 +3,12 @@ rvm:
   - "2.1.0"
 services:
   - redis-server
+jdk:
+  - openjdk7
+  - oraclejdk7
+env:
+  - TOMCAT_VERSION=7.0.52
+  - TOMCAT_VERSION=8.0.3
 notifications:
   webhooks:
     urls:
