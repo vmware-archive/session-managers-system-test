@@ -21,15 +21,14 @@ shared_context 'tomcat_helper' do
 
   let(:tomcat_metadata) { { location: Pathname.new(Dir.mktmpdir), http_port: 8081, shutdown_port: 8001 } }
 
-  let(:cache_file) { Pathname.new("vendor/apache-tomcat-#{ENV['TOMCAT_VERSION'] || '8.0.3'}.tar.gz") }
+  let(:cache_file) { Pathname.new("vendor/apache-tomcat-#{ENV['TOMCAT_VERSION'] || '7.0.52'}.tar.gz") }
 
   let(:log_content) { (tomcat_metadata[:location] + 'logs/catalina.out').read }
 
   before do |example|
     with_timing('Starting Tomcat...') do
       untar_tomcat tomcat_metadata[:location]
-      replace_xml_files example.metadata[:fixture], tomcat_metadata[:location]
-      deploy_war tomcat_metadata[:location]
+      copy_test_files example.metadata[:fixture], tomcat_metadata[:location]
       start_tomcat tomcat_metadata[:location], tomcat_metadata[:shutdown_port], tomcat_metadata[:http_port],
                    example.metadata[:ignore_startup_failure]
     end
@@ -42,9 +41,12 @@ shared_context 'tomcat_helper' do
     end
   end
 
-  def replace_xml_files(context_xml, dir)
+  def copy_test_files(context_xml, dir)
     FileUtils.copy 'spec/fixtures/server.xml', "#{dir}/conf/server.xml"
     FileUtils.copy "spec/fixtures/#{context_xml}.xml", "#{dir}/conf/context.xml"
+    FileUtils.copy 'vendor/redis-store.jar', "#{dir}/lib/redis-store.jar"
+    FileUtils.makedirs "#{dir}/webapps" unless Dir.exist? "#{dir}/webapps"
+    FileUtils.copy 'test-application/target/application.war', "#{dir}/webapps/ROOT.war"
   end
 
   def start_tomcat(dir, shutdown_port, http_port, suppress_fail)
@@ -62,11 +64,6 @@ shared_context 'tomcat_helper' do
 
   def untar_tomcat(dir)
     `tar zxf #{cache_file} --strip 1 --exclude \'webapps\' -C #{dir}`
-  end
-
-  def deploy_war(dir)
-    FileUtils.makedirs "#{dir}/webapps" unless Dir.exist? "#{dir}/webapps"
-    FileUtils.copy 'test-application/target/application.war', "#{dir}/webapps/ROOT.war"
   end
 
   def wait_for_start(http_port, dir, suppress_fail)

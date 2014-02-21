@@ -25,14 +25,14 @@ describe 'Configuration' do
 
   context ignore_startup_failure: true do
 
-    xit 'causes Tomcat to fail to start with incorrect Redis host',
-        fixture: 'configure-host-negative' do
+    it 'causes Tomcat to fail to start with incorrect Redis host',
+       fixture: 'configure-host-negative' do
       expect(log_content).to match('redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool')
     end
 
     xit 'causes Tomcat to fail to start with incorrect Redis password',
         fixture: 'configure-password-negative' do
-      expect(log_content).to match('Unable to connect Manager to Redis instance using configured password')
+      expect(log_content).to match('ERR Client sent AUTH, but no password is set')
     end
 
     xit 'causes Tomcat to fail to start with incorrect Redis port',
@@ -47,7 +47,7 @@ describe 'Configuration' do
 
     xit 'causes Tomcat to fail to start with incorrect database timeout',
         fixture: 'configure-timeout-negative' do
-      expect(log_content).to match('Unable to connect Manager to Redis instance, invalid timeout specified')
+      expect(log_content).to match('java.lang.IllegalArgumentException: connect: timeout can\'t be negative')
     end
 
   end
