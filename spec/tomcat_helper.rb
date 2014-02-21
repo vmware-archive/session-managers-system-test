@@ -21,7 +21,7 @@ shared_context 'tomcat_helper' do
 
   let(:tomcat_metadata) { { location: Pathname.new(Dir.mktmpdir), http_port: 8081, shutdown_port: 8001 } }
 
-  let(:cache_file) { Pathname.new('vendor/tomcat.tar.gz') }
+  let(:cache_file) { Pathname.new("vendor/apache-tomcat-#{ENV['TOMCAT_VERSION'] || '8.0.3'}.tar.gz") }
 
   let(:log_content) { (tomcat_metadata[:location] + 'logs/catalina.out').read }
 
