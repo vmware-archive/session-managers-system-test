@@ -27,7 +27,7 @@ describe 'Configuration' do
 
     xit 'causes Tomcat to fail to start with incorrect Redis host',
         fixture: 'configure-host-negative' do
-      expect(log_content).to match('Unable to connect Manager to Redis instance on host 127.1.2.3')
+      expect(log_content).to match('redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool')
     end
 
     xit 'causes Tomcat to fail to start with incorrect Redis password',
@@ -37,12 +37,12 @@ describe 'Configuration' do
 
     xit 'causes Tomcat to fail to start with incorrect Redis port',
         fixture: 'configure-port-negative' do
-      expect(log_content).to match('Unable to connect Manager to Redis instance on port 9876')
+      expect(log_content).to match('redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool')
     end
 
     xit 'causes Tomcat to fail to start with incorrect Redis URI',
         fixture: 'configure-uri-negative' do
-      expect(log_content).to match('Unable to connect Manager to Redis instance at http://127.1.2.3:9876/invalid/')
+      expect(log_content).to match('redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool')
     end
 
     xit 'causes Tomcat to fail to start with incorrect database timeout',
