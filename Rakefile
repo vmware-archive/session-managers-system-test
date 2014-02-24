@@ -50,7 +50,7 @@ def redis_store_url(tomcat_version)
 end
 
 def redis_store_version
-  '20140221.151315-8'
+  '20140224.123516-9'
 end
 
 tomcat_url = tomcat_url(tomcat_version)

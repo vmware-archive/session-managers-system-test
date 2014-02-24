@@ -45,8 +45,8 @@ describe 'Configuration' do
       expect(log_content).to match('redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool')
     end
 
-    xit 'causes Tomcat to fail to start with incorrect database timeout',
-        fixture: 'configure-timeout-negative' do
+    it 'causes Tomcat to fail to start with incorrect database timeout',
+       fixture: 'configure-timeout-negative' do
       expect(log_content).to match('java.lang.IllegalArgumentException: connect: timeout can\'t be negative')
     end
 
