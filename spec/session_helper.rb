@@ -16,7 +16,7 @@ shared_context 'session_helper' do
 
   let(:session_data) { 'Session Data' }
 
-  let(:location) { "http://localhost:#{tomcat_metadata[:http_port]}/session" }
+  let(:location) { "http://localhost:#{http_port}/session" }
 
   let(:session_id) { RestClient.post(location, session_data, content_type: 'text/plain').cookies['JSESSIONID'] }
 
