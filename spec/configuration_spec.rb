@@ -30,8 +30,8 @@ describe 'Configuration' do
       expect(log_content).to match('redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool')
     end
 
-    xit 'causes Tomcat to fail to start with incorrect Redis password',
-        fixture: 'configure-password-negative' do
+    it 'causes Tomcat to fail to start with incorrect Redis password',
+       fixture: 'configure-password-negative' do
       expect(log_content).to match('ERR Client sent AUTH, but no password is set')
     end
 

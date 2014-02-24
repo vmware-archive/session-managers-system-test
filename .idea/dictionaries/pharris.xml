@@ -10,12 +10,14 @@
       <w>fileutils</w>
       <w>getpgid</w>
       <w>hiredis</w>
+      <w>jedis</w>
       <w>makedirs</w>
       <w>metadatas</w>
       <w>mktmpdir</w>
       <w>rmtree</w>
       <w>rspec</w>
       <w>rubocop</w>
+      <w>setenv</w>
       <w>tmpdir</w>
       <w>untar</w>
       <w>webapps</w>

@@ -19,25 +19,28 @@ require 'tmpdir'
 
 shared_context 'tomcat_helper' do
 
-  let(:tomcat_metadata) { { location: Pathname.new(Dir.mktmpdir), http_port: 8081, shutdown_port: 8001 } }
+  let(:http_port) { 8081 }
+
+  let(:location) { Pathname.new(Dir.mktmpdir) }
+
+  let(:shutdown_port) { 8082 }
 
   let(:cache_file) { Pathname.new("vendor/apache-tomcat-#{ENV['TOMCAT_VERSION'] || '7.0.52'}.tar.gz") }
 
-  let(:log_content) { (tomcat_metadata[:location] + 'logs/catalina.out').read }
+  let(:log_content) { (location + 'logs/catalina.out').read }
 
   before do |example|
-    with_timing('Starting Tomcat...') do
-      untar_tomcat tomcat_metadata[:location]
-      copy_test_files example.metadata[:fixture], tomcat_metadata[:location]
-      start_tomcat tomcat_metadata[:location], tomcat_metadata[:shutdown_port], tomcat_metadata[:http_port],
-                   example.metadata[:ignore_startup_failure]
+    with_timing("Starting Tomcat on #{http_port}...") do
+      untar_tomcat location
+      copy_test_files example.metadata[:fixture], location
+      start_tomcat location, shutdown_port, http_port, example.metadata[:ignore_startup_failure]
     end
   end
 
   after do
     with_timing('Stopping Tomcat...') do
-      stop_tomcat tomcat_metadata[:location], tomcat_metadata[:shutdown_port]
-      tomcat_metadata[:location].rmtree
+      stop_tomcat location, shutdown_port
+      location.rmtree
     end
   end
 
@@ -71,6 +74,7 @@ shared_context 'tomcat_helper' do
 
     response = nil
     until response && response.body == 'ok'
+      sleep 0.5
       response = RestClient.get "http://localhost:#{http_port}"
     end
   rescue Errno::ECONNREFUSED
