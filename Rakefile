@@ -29,14 +29,14 @@ end
 require 'fileutils'
 require 'rest_client'
 
-def download_to_vendor(destination, url)
-  cache_file = Pathname.new("vendor/#{destination}")
+def download(destination, url)
+  cache_file = Pathname.new(destination)
   FileUtils.makedirs cache_file.parent unless cache_file.parent.exist?
   puts "Downloading #{destination} from #{url}..."
   cache_file.write(RestClient.get(url)) unless cache_file.exist?
 end
 
-def tomcat_url(tomcat_version)
+def tomcat_url
   "http://mirror.cc.columbia.edu/pub/software/apache/tomcat/tomcat-#{tomcat_version.chars[0]}" \
   "/v#{tomcat_version}/bin/apache-tomcat-#{tomcat_version}.tar.gz"
 end
@@ -45,19 +45,21 @@ def tomcat_version
   ENV['TOMCAT_VERSION'] || '7.0.52'
 end
 
-def redis_store_url(tomcat_version)
+def redis_store_url
   "http://maven.gopivotal.com.s3.amazonaws.com/snapshot/com/gopivotal/manager/redis-store/1.0.0.BUILD-SNAPSHOT/redis-store-1.0.0.BUILD-#{redis_store_version}.jar"
 end
 
 def redis_store_version
-  '20140224.123516-9'
+  '20140224.151228-10'
 end
 
-tomcat_url = tomcat_url(tomcat_version)
-download_to_vendor("apache-tomcat-#{tomcat_version}.tar.gz", tomcat_url)
+file "vendor/apache-tomcat-#{tomcat_version}.tar.gz" do |t|
+  download(t.name, tomcat_url)
+end
 
-redis_store_url = redis_store_url(redis_store_version)
-download_to_vendor('redis-store.jar', redis_store_url)
+file "vendor/redis-store.jar" do |t|
+  download(t.name, redis_store_url)
+end
 
 task spec: ['test-application/target/application.war', "vendor/apache-tomcat-#{tomcat_version}.tar.gz",
             'vendor/redis-store.jar']

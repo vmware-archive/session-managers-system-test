@@ -19,6 +19,6 @@
 <Context allowLinking='true'>
     <Valve className="com.gopivotal.manager.SessionFlushValve"/>
     <Manager className="org.apache.catalina.session.PersistentManager">
-        <Store className="com.gopivotal.manager.redis.RedisStore" uri="redis://user:pwd@127.1.2.3:9876/invalid/5"/>
+        <Store className="com.gopivotal.manager.redis.RedisStore" uri="redis://foo:bar@localhost:6379/0"/>
     </Manager>
 </Context>
