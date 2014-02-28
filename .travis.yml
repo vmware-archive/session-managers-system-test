@@ -3,15 +3,16 @@ rvm:
   - "2.1.1"
 services:
   - redis-server
-global:
-  - secure: Uq27HFBVYX2P8qpWi6KCWOwJ9M2+3epfxeEw0sjqkfZ/4d7qxMAOYgftuLRQhhm9k2WZmDMhk5jFqARgr0L2MT3uzuMYxzXz/ADLZFT9gFnQb6rwYCQZ6bH8WzrU06WY7c6IE0D33FbT+fcWy0B0JLFPgE3QPJ7Mhmoz4AdMZ/Q= # AWS_ACCESS_KEY
-  - secure: bi9lT93RRC2paWBt/bF6WiUuCFaqhf2X5KiHxruT5kkzYtRP+0lWgCRXKeQVMl5KnbuzNS5fHOwN2DwsQa226yAJhqPbfLpF6HG3i+xLO0zAQzdNo0ZbVgo4UXuG1HBa7zz80YUSFEz4enh/2zU/wJli8TZkkzOgFGkF1ZLU58s= # AWS_SECRET_ACCESS_KEY
 jdk:
   - openjdk7
   - oraclejdk8
 env:
-  - TOMCAT_VERSION=7.0.52
-  - TOMCAT_VERSION=8.0.3
+  global:
+    - secure: Uq27HFBVYX2P8qpWi6KCWOwJ9M2+3epfxeEw0sjqkfZ/4d7qxMAOYgftuLRQhhm9k2WZmDMhk5jFqARgr0L2MT3uzuMYxzXz/ADLZFT9gFnQb6rwYCQZ6bH8WzrU06WY7c6IE0D33FbT+fcWy0B0JLFPgE3QPJ7Mhmoz4AdMZ/Q= # AWS_ACCESS_KEY
+    - secure: bi9lT93RRC2paWBt/bF6WiUuCFaqhf2X5KiHxruT5kkzYtRP+0lWgCRXKeQVMl5KnbuzNS5fHOwN2DwsQa226yAJhqPbfLpF6HG3i+xLO0zAQzdNo0ZbVgo4UXuG1HBa7zz80YUSFEz4enh/2zU/wJli8TZkkzOgFGkF1ZLU58s= # AWS_SECRET_ACCESS_KEY
+  matrix:
+    - TOMCAT_VERSION=7.0.52
+    - TOMCAT_VERSION=8.0.3
 notifications:
   webhooks:
     urls:
