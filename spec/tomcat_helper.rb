@@ -16,6 +16,7 @@ require 'format_duration'
 require 'pathname'
 require 'rest_client'
 require 'tmpdir'
+require 'yaml'
 
 shared_context 'tomcat_helper' do
 
@@ -25,7 +26,7 @@ shared_context 'tomcat_helper' do
 
   let(:shutdown_port) { 8082 }
 
-  let(:cache_file) { Pathname.new("vendor/apache-tomcat-#{ENV['TOMCAT_VERSION'] || '7.0.52'}.tar.gz") }
+  let(:versions) { YAML.load Pathname.new('vendor/versions.yml').read }
 
   let(:log_content) { (location + 'logs/catalina.out').read }
 
@@ -47,7 +48,7 @@ shared_context 'tomcat_helper' do
   def copy_test_files(context_xml, dir)
     FileUtils.copy 'spec/fixtures/server.xml', "#{dir}/conf/server.xml"
     FileUtils.copy "spec/fixtures/#{context_xml}.xml", "#{dir}/conf/context.xml"
-    FileUtils.copy 'vendor/redis-store.jar', "#{dir}/lib/redis-store.jar"
+    FileUtils.copy versions[:redis_store_version], "#{dir}/lib/redis-store.jar"
     FileUtils.makedirs "#{dir}/webapps" unless Dir.exist? "#{dir}/webapps"
     FileUtils.copy 'test-application/target/application.war', "#{dir}/webapps/ROOT.war"
   end
@@ -66,7 +67,7 @@ shared_context 'tomcat_helper' do
   end
 
   def untar_tomcat(dir)
-    `tar zxf #{cache_file} --strip 1 --exclude \'webapps\' -C #{dir}`
+    `tar zxf #{versions[:tomcat_version]} --strip 1 --exclude \'webapps\' -C #{dir}`
   end
 
   def wait_for_start(http_port, dir, suppress_fail)
