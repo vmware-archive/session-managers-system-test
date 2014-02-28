@@ -3,6 +3,7 @@
     <words>
       <w>chdir</w>
       <w>dhttp</w>
+      <w>dirname</w>
       <w>dshutdown</w>
       <w>econnrefused</w>
       <w>errno</w>
@@ -18,9 +19,11 @@
       <w>rspec</w>
       <w>rubocop</w>
       <w>setenv</w>
+      <w>tasklib</w>
       <w>tmpdir</w>
       <w>untar</w>
       <w>webapps</w>
+      <w>yaml</w>
     </words>
   </dictionary>
 </component>

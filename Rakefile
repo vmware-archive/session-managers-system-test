@@ -21,47 +21,22 @@ Rubocop::RakeTask.new
 require 'rake/clean'
 CLOBBER.include 'test-application/target', 'vendor'
 
+require_relative 'rake/redis_store_rake_task'
+redis_store_rake_task = RedisStoreRakeTask.new
+
+require_relative 'rake/tomcat_rake_task'
+tomcat_rake_task = TomcatRakeTask.new(default_version: '7.0.52')
+
 file 'test-application/target/application.war' =>
          FileList['test-application/src/main/java/**/*.java', 'test-application/pom.xml'] do
   Dir.chdir('test-application') { system 'mvn package' }
 end
 
-require 'fileutils'
-require 'rest_client'
-
-def download(destination, url)
-  cache_file = Pathname.new(destination)
-  FileUtils.makedirs cache_file.parent unless cache_file.parent.exist?
-  puts "Downloading #{destination} from #{url}..."
-  cache_file.write(RestClient.get(url)) unless cache_file.exist?
+task :versions do
+  versions = { redis_store_version: redis_store_rake_task.name, tomcat_version: tomcat_rake_task.name }
+  Pathname.new('vendor/versions.yml').write versions.to_yaml
 end
 
-def tomcat_url
-  "http://mirror.cc.columbia.edu/pub/software/apache/tomcat/tomcat-#{tomcat_version.chars[0]}" \
-  "/v#{tomcat_version}/bin/apache-tomcat-#{tomcat_version}.tar.gz"
-end
-
-def tomcat_version
-  ENV['TOMCAT_VERSION'] || '7.0.52'
-end
-
-def redis_store_url
-  "http://maven.gopivotal.com.s3.amazonaws.com/snapshot/com/gopivotal/manager/redis-store/1.0.0.BUILD-SNAPSHOT/redis-store-1.0.0.BUILD-#{redis_store_version}.jar"
-end
-
-def redis_store_version
-  '20140224.151228-10'
-end
-
-file "vendor/apache-tomcat-#{tomcat_version}.tar.gz" do |t|
-  download(t.name, tomcat_url)
-end
-
-file "vendor/redis-store.jar" do |t|
-  download(t.name, redis_store_url)
-end
-
-task spec: ['test-application/target/application.war', "vendor/apache-tomcat-#{tomcat_version}.tar.gz",
-            'vendor/redis-store.jar']
+task spec: ['test-application/target/application.war', redis_store_rake_task.name, tomcat_rake_task.name, :versions]
 task warfile: 'test-application/target/application.war'
 task default: [:rubocop, :spec]

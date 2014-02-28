@@ -17,7 +17,7 @@
 package sessions;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.SpringBootServletInitializer;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
 
 public final class ApplicationSpringBootServletInitializer extends SpringBootServletInitializer {
 

@@ -1,10 +1,11 @@
 source "https://rubygems.org"
 
-gem 'rake'
-gem 'rspec', '>= 3.0.0beta1'
-gem 'rubocop'
-gem 'rest-client'
+gem 'aws-sdk'
 gem 'debase'
-gem 'ruby-debug-ide'
-gem 'redis'
 gem 'hiredis'
+gem 'rake'
+gem 'redis'
+gem 'rest-client'
+gem 'rspec', '= 3.0.0beta1'
+gem 'rubocop'
+gem 'ruby-debug-ide'
