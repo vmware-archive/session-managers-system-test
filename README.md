@@ -9,8 +9,10 @@ To run the tests, do the following:
 
 ```bash
 bundle install
-bundle exec rake
+AWS_ACCESS_KEY_ID={valid_access_key} AWS_SECRET_ACCESS_KEY={valid_secret_access_key} bundle exec rake spec
 ```
+The jar file for Redis Manager is in a publicly accessible location, but checking for the latest version requires you to authenticate with AWS. The credentials are not used for any other purpose. 
+
 
 ## Contributing
 [Pull requests][] are welcome; see the [contributor guidelines][] for details.
