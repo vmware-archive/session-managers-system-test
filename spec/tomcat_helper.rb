@@ -22,26 +22,26 @@ shared_context 'tomcat_helper' do
 
   let(:http_port) { 8081 }
 
-  let(:location) { Pathname.new(Dir.mktmpdir) }
+  let(:tomcat_location) { Pathname.new(Dir.mktmpdir) }
 
   let(:shutdown_port) { 8082 }
 
   let(:versions) { YAML.load Pathname.new('vendor/versions.yml').read }
 
-  let(:log_content) { (location + 'logs/catalina.out').read }
+  let(:log_content) { (tomcat_location + 'logs/catalina.out').read }
 
   before do |example|
     with_timing("Starting Tomcat on #{http_port}...") do
-      untar_tomcat location
-      copy_test_files example.metadata[:fixture], location
-      start_tomcat location, shutdown_port, http_port, example.metadata[:ignore_startup_failure]
+      untar_tomcat tomcat_location
+      copy_test_files example.metadata[:fixture], tomcat_location
+      start_tomcat tomcat_location, shutdown_port, http_port, example.metadata[:ignore_startup_failure]
     end
   end
 
   after do
     with_timing('Stopping Tomcat...') do
-      stop_tomcat location, shutdown_port
-      location.rmtree
+      stop_tomcat tomcat_location, shutdown_port
+      tomcat_location.rmtree
     end
   end
 
