@@ -10,7 +10,7 @@ Not sure what a pull request is, or how to submit one?  Take a look at GitHub's 
 ## Search GitHub Issues first; create an issue if necessary
 Is there already an issue that addresses your concern?  Do a bit of searching in our [GitHub issue tracker][] to see if you can find something similar. If not, please create a new issue before submitting a pull request unless the change is truly trivial, e.g. typo fixes, removing compiler warnings, etc.
 
-[GitHub issue tracker]: https://github.com/cloudfoundry/redis-manager-system-test/issues
+[GitHub issue tracker]: https://github.com/cloudfoundry/session-managers-system-test/issues
 
 ## Discuss non-trivial contribution ideas with committers
 If you're considering anything more than correcting a typo or fixing a minor bug, please discuss it in a GitHub issue before submitting a pull request. We're happy to provide guidance, but please spend an hour or two researching the subject on your own including searching the mailing list for prior discussions.
@@ -90,10 +90,10 @@ git config --global user.name "First Last"
 git config --global user.email user@mail.com
 ```
 
-or locally for the `redis-manager-system-test` repository only by omitting the `--global` flag:
+or locally for the `session-managers-system-test` repository only by omitting the `--global` flag:
 
 ```bash
-cd redis-manager-system-test
+cd session-managers-system-test
 git config user.name "First Last"
 git config user.email user@mail.com
 ```
@@ -152,6 +152,6 @@ In the body:
 Note that for pull requests containing a single commit, GitHub will default the subject line and body of the pull request to match the subject line and body of the commit message. This is fine, but please also include the items above in the body of the request.
 
 ## Expect discussion and rework
-The Cloud Foundry Java Experience team takes a very conservative approach to accepting contributions to the system test. This is to keep code quality and stability as high as possible, and to keep complexity at a minimum. Your changes, if accepted, may be heavily modified prior to merging. You will retain "Author:" attribution for your Git commits granted that the bulk of your changes remain intact. You may be asked to rework the submission for style (as explained above) and/or substance. Again, we strongly recommend discussing any serious submissions with the Cloud Foundry Java Experience team _prior_ to engaging in serious development work.
+The Cloud Foundry Java Experience team takes a very conservative approach to accepting contributions to this system test. This is to keep code quality and stability as high as possible, and to keep complexity at a minimum. Your changes, if accepted, may be heavily modified prior to merging. You will retain "Author:" attribution for your Git commits granted that the bulk of your changes remain intact. You may be asked to rework the submission for style (as explained above) and/or substance. Again, we strongly recommend discussing any serious submissions with the Cloud Foundry Java Experience team _prior_ to engaging in serious development work.
 
 Note that you can always force push (`git push -f`) reworked / rebased commits against the branch used to submit your pull request. i.e. you do not need to issue a new pull request when asked to make changes.

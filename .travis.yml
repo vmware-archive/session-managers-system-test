@@ -16,5 +16,5 @@ env:
 notifications:
   webhooks:
     urls:
-      - https://build-monitor.cfapps.io:4443/projects/RMST/webhook
+      - https://build-monitor.cfapps.io:4443/projects/SMST/webhook
     on_start: true
