@@ -58,4 +58,9 @@ describe 'Configuration' do
     expect(redis.get(session_id)).to eq(session_data)
   end
 
+  it 'causes a Redis Manager usage message to be logged', :focus,
+     fixture: 'default' do
+    expect(log_content).to match('Sessions will be persisted to Redis using a com.gopivotal.manager.redis.RedisStore')
+  end
+
 end
