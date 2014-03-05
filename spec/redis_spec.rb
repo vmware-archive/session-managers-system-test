@@ -22,9 +22,9 @@ describe 'Redis' do
   include_context 'session_helper'
   include_context 'tomcat_helper'
 
-  xit 'stores session data from Tomcat',
-      fixture: 'default' do
-    expect(redis.get(session_id)).to eq(session_data)
+  it 'stores session data from Tomcat',
+     fixture: 'default' do
+    expect(redis.get(session_id).scrub).to match(session_data)
   end
 
 end
