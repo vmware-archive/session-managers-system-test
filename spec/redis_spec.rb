@@ -27,4 +27,11 @@ describe 'Redis' do
     expect(redis.get(session_id).scrub).to match(session_data)
   end
 
+  it 'caches session data in Tomcat',
+     fixture: 'default' do
+    expect(redis.get(session_id).scrub).to match(session_data)
+    redis.del session_id
+    expect(RestClient.get(location, cookies: {'JSESSIONID' => session_id})).to match(session_data)
+  end
+
 end
