@@ -21,4 +21,12 @@ shared_context 'redis_helper' do
     Redis.new(db: database, driver: :hiredis)
   end
 
+  before do
+    redis.flushall
+  end
+
+  after do
+    redis.flushall
+  end
+
 end
