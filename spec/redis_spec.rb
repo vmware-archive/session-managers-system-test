@@ -31,7 +31,7 @@ describe 'Redis' do
      fixture: 'default' do
     expect(redis.get(session_id).scrub).to match(session_data)
     redis.del session_id
-    expect(RestClient.get(location, cookies: {'JSESSIONID' => session_id})).to match(session_data)
+    expect(RestClient.get(location, cookies: { 'JSESSIONID' => session_id })).to match(session_data)
   end
 
 end
