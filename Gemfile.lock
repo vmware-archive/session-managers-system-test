@@ -6,17 +6,17 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
-    debase (0.0.9)
-      debugger-ruby_core_source
-    debugger-ruby_core_source (1.3.2)
     diff-lcs (1.2.5)
-    hiredis (0.4.5)
+    jmx4r (0.1.4)
     json (1.8.1)
+    json (1.8.1-java)
     mime-types (2.1)
     mini_portile (0.5.2)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
-    parser (2.1.5)
+    nokogiri (1.6.1-java)
+      mini_portile (~> 0.5.0)
+    parser (2.1.7)
       ast (~> 1.1)
       slop (~> 3.4, >= 3.4.5)
     powerpack (0.0.9)
@@ -42,21 +42,20 @@ GEM
       parser (~> 2.1.3)
       powerpack (~> 0.0.6)
       rainbow (>= 1.99.1, < 3.0)
-    ruby-debug-ide (0.4.22)
-      rake (>= 0.8.1)
+    scrub_rb (0.2.0)
     slop (3.4.7)
     uuidtools (2.1.4)
 
 PLATFORMS
+  java
   ruby
 
 DEPENDENCIES
   aws-sdk
-  debase
-  hiredis
+  jmx4r
   rake
   redis
   rest-client
   rspec (= 3.0.0beta1)
   rubocop
-  ruby-debug-ide
+  scrub_rb

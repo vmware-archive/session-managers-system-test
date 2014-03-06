@@ -1,3 +1,4 @@
+# Encoding: utf-8
 # Copyright 2014 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +19,7 @@ shared_context 'redis_helper' do
 
   let(:redis) do |example|
     database = example.metadata[:redis_database] || 0
-    Redis.new(db: database, driver: :hiredis)
+    Redis.new(db: database)
   end
 
   before do
