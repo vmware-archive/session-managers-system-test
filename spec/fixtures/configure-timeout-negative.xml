@@ -16,7 +16,7 @@
   ~ limitations under the License.
   -->
 
-<Context allowLinking='true'>
+<Context>
     <Valve className="com.gopivotal.manager.SessionFlushValve"/>
     <Manager className="org.apache.catalina.session.PersistentManager">
         <Store className="com.gopivotal.manager.redis.RedisStore" timeout="-1"/>
