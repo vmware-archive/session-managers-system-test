@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - "2.1.1"
+  - jruby-19mode
 services:
   - redis-server
 jdk:

@@ -1,3 +1,4 @@
+# Encoding: utf-8
 # Copyright 2014 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,6 +27,8 @@ shared_context 'tomcat_helper' do
 
   let(:shutdown_port) { 8082 }
 
+  let(:jmx_port) { 8083 }
+
   let(:versions) { YAML.load Pathname.new('vendor/versions.yml').read }
 
   let(:log_content) { (tomcat_location + 'logs/catalina.out').read }
@@ -34,7 +37,7 @@ shared_context 'tomcat_helper' do
     with_timing("Starting Tomcat on #{http_port}...") do
       untar_tomcat tomcat_location
       copy_test_files example.metadata[:fixture], tomcat_location
-      start_tomcat tomcat_location, shutdown_port, http_port, example.metadata[:ignore_startup_failure]
+      start_tomcat tomcat_location, shutdown_port, http_port, jmx_port, example.metadata[:ignore_startup_failure]
     end
   end
 
@@ -53,10 +56,11 @@ shared_context 'tomcat_helper' do
     FileUtils.copy 'test-application/target/application.war', "#{dir}/webapps/ROOT.war"
   end
 
-  def start_tomcat(dir, shutdown_port, http_port, suppress_fail)
+  def start_tomcat(dir, shutdown_port, http_port, jmx_port, suppress_fail)
     File.open("#{dir}/bin/setenv.sh", 'w') do |f|
-      f.write("CATALINA_PID=$CATALINA_BASE/logs/tomcat.pid\n")
-      f.write("JAVA_OPTS=\"-Dshutdown.port=#{shutdown_port} -Dhttp.port=#{http_port}\"")
+      f << "CATALINA_PID=$CATALINA_BASE/logs/tomcat.pid\n"
+      f << "JAVA_OPTS=\"-Dshutdown.port=#{shutdown_port} -Dhttp.port=#{http_port}\"\n"
+      f << "CATALINA_OPTS=\"-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=#{jmx_port} -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false\""
     end
     `#{dir}/bin/catalina.sh start`
     wait_for_start(http_port, dir, suppress_fail)
