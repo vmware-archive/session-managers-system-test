@@ -53,6 +53,29 @@ describe 'Redis' do
     expect(rest_get).to match(final_session_data)
   end
 
+  it 'does not stop sessions being returned if it goes down',
+     fixture: 'default' do
+    session_id
+    client_kill(client_list.sort_by { |value| value['age'].to_i }.first['addr'])
+    expect(rest_get).to eq(session_data)
+
+    sleep 1
+    expect(log_content).to match('JedisConnectionException: java.net.SocketException: Socket closed')
+  end
+
+  def client_kill(address)
+    redis.client.call([:client, :kill, address])
+  end
+
+  def client_list
+    redis.client.call([:client, :list]) do |reply|
+      reply.lines.map do |line|
+        entries = line.chomp.split(/[ =]/)
+        Hash[entries.each_slice(2).to_a]
+      end
+    end
+  end
+
   def rest_post(new_session_data)
     RestClient.post(location, new_session_data, content_type: 'text/plain', cookies: { 'JSESSIONID' => session_id })
   end
