@@ -26,7 +26,7 @@ class RedisStoreRakeTask < Rake::TaskLib
 
   def initialize
     @version, @uri = artifact_details
-    @name = "vendor/redis-store-#{@version}.jar"
+    @name          = "vendor/redis-store-#{@version}.jar"
 
     desc 'Utils Redis Store binary' unless Rake.application.last_comment
 
@@ -42,12 +42,21 @@ class RedisStoreRakeTask < Rake::TaskLib
     s3     = AWS::S3.new(region: 'eu-west-1')
     bucket = s3.buckets['maven.gopivotal.com']
 
-    artifact = bucket.as_tree(prefix: 'snapshot/com/gopivotal/manager/redis-store/').children
-    .select(&:branch?).sort { |a, b| a.key <=> b.key }.last.children
-    .select { |node| node.key =~ /[\d]\.jar$/ }.sort { |a, b| a.key <=> b.key }.last
+    branches = bucket.as_tree(prefix: 'snapshot/com/gopivotal/manager/redis-store/').children.select(&:branch?)
+    artifact = branch(branches).children.select { |node| node.key =~ /[\d]\.jar$/ }.sort_by { |node| node.key }.last
 
     uri = artifact.object.public_url(secure: false).to_s
     [version(uri), uri]
+  end
+
+  def branch(branches)
+    store_version = ENV['STORE_VERSION']
+
+    if store_version
+      branches.find { |branch| branch.prefix =~ /#{store_version}/ }
+    else
+      branches.sort_by { |branch| branch.prefix }.last
+    end
   end
 
   def version(uri)
