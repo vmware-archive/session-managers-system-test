@@ -8,13 +8,13 @@
     <orderEntry type="jdk" jdkName="rbenv: jruby-1.7.9" jdkType="JRUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="ast (v1.1.0, rbenv: jruby-1.7.9) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="aws-sdk (v1.36.1, rbenv: jruby-1.7.9) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk (v1.37.0, rbenv: jruby-1.7.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v1.5.3, rbenv: jruby-1.7.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.2.5, rbenv: jruby-1.7.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jmx4r (v0.1.4, rbenv: jruby-1.7.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="json (v1.8.1, rbenv: jruby-1.7.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mime-types (v2.2, rbenv: jruby-1.7.9) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="mini_portile (v0.5.2, rbenv: jruby-1.7.9) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mini_portile (v0.5.3, rbenv: jruby-1.7.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.6.1, rbenv: jruby-1.7.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="parser (v2.1.7, rbenv: jruby-1.7.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="powerpack (v0.0.9, rbenv: jruby-1.7.9) [gem]" level="application" />
