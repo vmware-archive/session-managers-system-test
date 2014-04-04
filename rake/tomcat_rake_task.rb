@@ -38,7 +38,7 @@ class TomcatRakeTask < Rake::TaskLib
   private
 
   def url
-    "http://mirror.cc.columbia.edu/pub/software/apache/tomcat/tomcat-#{@version.chars.first}/v#{@version}/bin" \
+    "http://archive.apache.org/dist/tomcat/tomcat-#{@version.chars.first}/v#{@version}/bin" \
     "/apache-tomcat-#{@version}.tar.gz"
   end
 
