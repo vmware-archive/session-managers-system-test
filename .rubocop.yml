@@ -1,9 +1,8 @@
 ---
-#ClassVars:
-#  Enabled: false
-#CyclomaticComplexity:
-#  Max: 10
 AllCops:
+  Include:
+    - Rakefile
+    - rakelib/**
   Exclude:
     - vendor/**
 Documentation:
