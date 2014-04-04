@@ -42,8 +42,6 @@ class Numeric
     "#{seconds}.#{tenths}s"
   end
 
-  private
-
   MILLISECOND = 0.001.freeze
 
   TENTH = (100 * MILLISECOND).freeze

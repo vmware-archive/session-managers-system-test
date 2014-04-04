@@ -4,7 +4,7 @@
 #CyclomaticComplexity:
 #  Max: 10
 AllCops:
-  Excludes:
+  Exclude:
     - vendor/**
 Documentation:
   Enabled: false
