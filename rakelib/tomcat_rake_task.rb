@@ -13,9 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require_relative 'utils'
 require 'rake'
 require 'rake/tasklib'
+require 'rakelib/utils'
 
 class TomcatRakeTask < Rake::TaskLib
   include Rake::DSL if defined?(::Rake::DSL)

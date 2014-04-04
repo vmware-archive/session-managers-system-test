@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+$LOAD_PATH.unshift File.expand_path('..', __FILE__)
+
+
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new
 
@@ -21,10 +24,10 @@ Rubocop::RakeTask.new
 require 'rake/clean'
 CLOBBER.include 'test-application/target', 'vendor'
 
-require_relative 'rake/redis_store_rake_task'
+require 'rakelib/redis_store_rake_task'
 redis_store_rake_task = RedisStoreRakeTask.new
 
-require_relative 'rake/tomcat_rake_task'
+require 'rakelib/tomcat_rake_task'
 tomcat_rake_task = TomcatRakeTask.new(default_version: '7.0.53')
 
 file 'test-application/target/application.war' =>
