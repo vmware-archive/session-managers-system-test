@@ -85,9 +85,9 @@ shared_context 'tomcat_helper' do
   rescue Errno::ECONNREFUSED
     retry
   rescue Errno::ESRCH => e
-    fail StandardError, "Tomcat process was not running: #{e.message}\nLog Content:\n#{log_content}" unless suppress_fail
+    raise StandardError, "Tomcat process was not running: #{e.message}\nLog Content:\n#{log_content}" unless suppress_fail
   rescue StandardError => e
-    fail StandardError, "Unable to connect to Tomcat: #{e.message}\nLog Content:\n#{log_content}" unless suppress_fail
+    raise StandardError, "Unable to connect to Tomcat: #{e.message}\nLog Content:\n#{log_content}" unless suppress_fail
   end
 
   def with_timing(caption)
