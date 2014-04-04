@@ -25,15 +25,15 @@ class Numeric
   def duration
     remainder = self
 
-    hours = (remainder / HOUR).to_int
+    hours     = (remainder / HOUR).to_int
     remainder -= HOUR * hours
 
-    minutes = (remainder / MINUTE).to_int
+    minutes   = (remainder / MINUTE).to_int
     remainder -= MINUTE * minutes
 
     return "#{hours}h #{minutes}m" if hours > 0
 
-    seconds = (remainder / SECOND).to_int
+    seconds   = (remainder / SECOND).to_int
     remainder -= SECOND * seconds
 
     return "#{minutes}m #{seconds}s" if minutes > 0
@@ -51,5 +51,7 @@ class Numeric
   MINUTE = (60 * SECOND).freeze
 
   HOUR = (60 * MINUTE).freeze
+
+  private_constant :MILLISECOND, :TENTH, :SECOND, :MINUTE, :HOUR
 
 end
