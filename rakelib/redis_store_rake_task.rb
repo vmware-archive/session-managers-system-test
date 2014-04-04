@@ -14,9 +14,9 @@
 # limitations under the License.
 
 require 'aws-sdk'
-require_relative 'utils'
 require 'rake'
 require 'rake/tasklib'
+require 'rakelib/utils'
 
 class RedisStoreRakeTask < Rake::TaskLib
   include Rake::DSL if defined?(::Rake::DSL)
