@@ -37,7 +37,7 @@ GEM
     rspec-mocks (3.0.0.beta1)
       rspec-support (= 3.0.0.beta1)
     rspec-support (3.0.0.beta1)
-    rubocop (0.20.0)
+    rubocop (0.20.1)
       json (>= 1.7.7, < 2)
       parser (~> 2.1.7)
       powerpack (~> 0.0.6)
