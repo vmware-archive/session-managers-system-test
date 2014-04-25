@@ -2,10 +2,9 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.0.0)
-    aws-sdk (1.38.0)
+    aws-sdk (1.39.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
-      uuidtools (~> 2.1)
     diff-lcs (1.2.5)
     jmx4r (0.1.4)
     json (1.8.1)
@@ -46,7 +45,6 @@ GEM
     ruby-progressbar (1.4.2)
     scrub_rb (0.2.0)
     slop (3.5.0)
-    uuidtools (2.1.4)
 
 PLATFORMS
   java
