@@ -2,7 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.0.0)
-    aws-sdk (1.40.2)
+    aws-sdk (1.40.3)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
     diff-lcs (1.2.5)
@@ -19,7 +19,7 @@ GEM
       slop (~> 3.4, >= 3.4.5)
     powerpack (0.0.9)
     rainbow (2.0.0)
-    rake (10.3.1)
+    rake (10.3.2)
     redis (3.0.7)
     rest-client (1.6.7)
       mime-types (>= 1.16)
@@ -41,7 +41,7 @@ GEM
       powerpack (~> 0.0.6)
       rainbow (>= 1.99.1, < 3.0)
       ruby-progressbar (~> 1.4)
-    ruby-progressbar (1.5.0)
+    ruby-progressbar (1.5.1)
     scrub_rb (0.2.0)
     slop (3.5.0)
 
@@ -55,6 +55,6 @@ DEPENDENCIES
   rake
   redis
   rest-client
-  rspec (>= 3.0.0beta2)
+  rspec (= 3.0.0beta2)
   rubocop
   scrub_rb
