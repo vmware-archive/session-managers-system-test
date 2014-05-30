@@ -25,7 +25,7 @@ describe 'Configuration' do
   include_context 'session_helper'
   include_context 'tomcat_helper'
 
-  context ignore_startup_failure: true do
+  context nil, ignore_startup_failure: true do
 
     it 'causes Tomcat to fail to start with incorrect Redis host',
        fixture: 'configure-host-negative' do
