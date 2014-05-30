@@ -8,8 +8,8 @@
     <orderEntry type="jdk" jdkName="rbenv: jruby-1.7.9" jdkType="JRUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="ast (v2.0.0, rbenv: jruby-1.7.9) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="aws-sdk (v1.41.0, rbenv: jruby-1.7.9) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.5.3, rbenv: jruby-1.7.9) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk (v1.42.0, rbenv: jruby-1.7.9) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.6.2, rbenv: jruby-1.7.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.2.5, rbenv: jruby-1.7.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jmx4r (v0.1.4, rbenv: jruby-1.7.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="json (v1.8.1, rbenv: jruby-1.7.9) [gem]" level="application" />
@@ -21,11 +21,11 @@
     <orderEntry type="library" scope="PROVIDED" name="rake (v10.3.2, rbenv: jruby-1.7.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="redis (v3.0.7, rbenv: jruby-1.7.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rest-client (v1.6.7, rbenv: jruby-1.7.9) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rspec (v3.0.0.beta2, rbenv: jruby-1.7.9) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rspec-core (v3.0.0.beta2, rbenv: jruby-1.7.9) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rspec-expectations (v3.0.0.beta2, rbenv: jruby-1.7.9) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rspec-mocks (v3.0.0.beta2, rbenv: jruby-1.7.9) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rspec-support (v3.0.0.beta2, rbenv: jruby-1.7.9) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec (v3.0.0.rc1, rbenv: jruby-1.7.9) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-core (v3.0.0.rc1, rbenv: jruby-1.7.9) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-expectations (v3.0.0.rc1, rbenv: jruby-1.7.9) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-mocks (v3.0.0.rc1, rbenv: jruby-1.7.9) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-support (v3.0.0.rc1, rbenv: jruby-1.7.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop (v0.22.0, rbenv: jruby-1.7.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby-progressbar (v1.5.1, rbenv: jruby-1.7.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="scrub_rb (v0.2.0, rbenv: jruby-1.7.9) [gem]" level="application" />
