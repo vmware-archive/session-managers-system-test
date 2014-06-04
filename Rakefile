@@ -19,7 +19,7 @@ require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new
 
 require 'rubocop/rake_task'
-Rubocop::RakeTask.new
+RuboCop::RakeTask.new
 
 require 'rake/clean'
 CLOBBER.include 'test-application/target', 'vendor'
