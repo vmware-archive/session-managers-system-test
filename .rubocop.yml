@@ -4,7 +4,7 @@ AllCops:
     - Rakefile
     - rakelib/**
   Exclude:
-    - vendor/**
+    - vendor/**/*
 Documentation:
   Enabled: false
 EmptyLinesAroundBody:
