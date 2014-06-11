@@ -4,6 +4,7 @@ rvm:
 services:
   - redis-server
 jdk:
+  - openjdk6
   - openjdk7
   - oraclejdk8
 env:
@@ -13,6 +14,10 @@ env:
   matrix:
     - TOMCAT_VERSION=7.0.54
     - TOMCAT_VERSION=8.0.8
+matrix:
+  exclude:
+    - jdk: openjdk6
+      env: TOMCAT_VERSION=8.0.8
 notifications:
   webhooks:
     urls:
