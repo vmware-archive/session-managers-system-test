@@ -54,7 +54,7 @@ describe 'Configuration' do
 
   end
 
-  it 'causes data to be stored using a correctly configured uri', :focus,
+  it 'causes data to be stored using a correctly configured uri',
      fixture:        'configure-uri',
      redis_database: 3 do
     expect(redis.get(session_id).scrub).to match(session_data)

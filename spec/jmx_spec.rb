@@ -42,6 +42,6 @@ describe 'JMX' do
     expect(store.password).to be_nil
     expect(store.port).to eq(6379)
     expect(store.timeout).to eq(2000)
-    expect(store.uri).to eq('redis://:null@localhost:6379/0')
+    expect(store.uri).to eq('redis://localhost:6379/0')
   end
 end
