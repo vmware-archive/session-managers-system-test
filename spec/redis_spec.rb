@@ -60,7 +60,7 @@ describe 'Redis' do
     expect(rest_get).to eq(session_data)
 
     sleep 1
-    expect(log_content).to match('JedisConnectionException: java.net.SocketException: Connection reset')
+    expect(log_content).to match('JedisConnectionException:')
   end
 
   def client_kill(address)
