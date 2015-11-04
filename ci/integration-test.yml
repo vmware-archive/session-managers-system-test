@@ -1,5 +1,6 @@
 ---
 platform: linux
+image: docker:///cfje/session-managers-ci#java-8
 
 inputs:
 - name: session-managers-system-test

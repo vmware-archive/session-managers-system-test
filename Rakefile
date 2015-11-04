@@ -32,7 +32,7 @@ tomcat_rake_task = TomcatRakeTask.new(default_version: '7.0.54')
 
 file 'test-application/target/application.war' =>
          FileList['test-application/src/main/java/**/*.java', 'test-application/pom.xml'] do
-  Dir.chdir('test-application') { system 'mvn package' }
+  Dir.chdir('test-application') { system './mvnw package' }
 end
 
 task :versions do
