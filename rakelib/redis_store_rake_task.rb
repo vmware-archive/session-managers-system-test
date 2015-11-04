@@ -13,10 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require 'aws-sdk'
 require 'rake'
 require 'rake/tasklib'
 require 'rakelib/utils'
+require 'rest_client'
 
 class RedisStoreRakeTask < Rake::TaskLib
   include Rake::DSL if defined?(::Rake::DSL)
@@ -39,28 +39,14 @@ class RedisStoreRakeTask < Rake::TaskLib
   private
 
   def artifact_details
-    s3     = AWS::S3.new(region: 'eu-west-1')
-    bucket = s3.buckets['maven.gopivotal.com']
-
-    branches = bucket.as_tree(prefix: 'snapshot/com/gopivotal/manager/redis-store/').children.select(&:branch?)
-    artifact = branch(branches).children.select { |node| node.key =~ /[\d]\.jar$/ }.sort_by { |node| node.key }.last
-
-    uri = artifact.object.public_url(secure: false).to_s
+    uri = 'https://repo.spring.io/libs-snapshot-local/com/gopivotal/manager/' \
+          'redis-store/1.3.0.BUILD-SNAPSHOT/redis-store-1.3.0.BUILD-SNAPSHOT.jar'
     [version(uri), uri]
   end
 
-  def branch(branches)
-    store_version = ENV['STORE_VERSION']
-
-    if store_version
-      branches.find { |branch| branch.prefix =~ /#{store_version}/ }
-    else
-      branches.sort_by { |branch| branch.prefix }.last
-    end
-  end
-
   def version(uri)
-    /.*\/redis-store-(.+)\.jar/.match(uri)[1]
+    header = RestClient.head(uri).headers[:x_artifactory_filename]
+    /redis-store-(.+)\.jar/.match(header)[1]
   end
 
 end

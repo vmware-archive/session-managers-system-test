@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'aws-sdk'
 gem 'jmx4r'
 gem 'rake'
 gem 'redis'

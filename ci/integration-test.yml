@@ -1,0 +1,8 @@
+---
+platform: linux
+
+inputs:
+- name: session-managers-system-test
+
+run:
+  path: session-managers-system-test/ci/integration-test.sh
