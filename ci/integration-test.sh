@@ -3,7 +3,6 @@
 set -e -x
 
 source $HOME/.profile
-echo $PATH
 
 service redis-server start
 
