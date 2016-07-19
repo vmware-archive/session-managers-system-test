@@ -28,7 +28,7 @@ require 'rakelib/redis_store_rake_task'
 redis_store_rake_task = RedisStoreRakeTask.new
 
 require 'rakelib/tomcat_rake_task'
-tomcat_rake_task = TomcatRakeTask.new(default_version: '7.0.54')
+tomcat_rake_task = TomcatRakeTask.new(default_version: '8.5.4')
 
 file 'test-application/target/application.war' =>
          FileList['test-application/src/main/java/**/*.java', 'test-application/pom.xml'] do
