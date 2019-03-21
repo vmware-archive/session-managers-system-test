@@ -19,7 +19,7 @@ The jar files for Session Managers are in a publicly accessible location, but ch
 ## License
 This system test is released under version 2.0 of the [Apache License][].
 
-[Apache License]: http://www.apache.org/licenses/LICENSE-2.0
+[Apache License]: https://www.apache.org/licenses/LICENSE-2.0
 [contributor guidelines]: CONTRIBUTING.md
 [Pull requests]: http://help.github.com/send-pull-requests
 [Redis Manager]: https://github.com/gopivotal/session-
