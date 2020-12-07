@@ -1,3 +1,6 @@
+# :bangbang: The Sessions Managers System Test repository will be archived at the end of the year 2020
+## This project has largely been inactive and will no longer be maintained once it is archived 
+
 # Session Managers System Tests
 [![Dependency Status](https://gemnasium.com/gopivotal/session-managers-system-test.svg)](https://gemnasium.com/gopivotal/session-managers-system-test)
 
